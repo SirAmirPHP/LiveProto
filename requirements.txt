@@ -1,0 +1,22 @@
+# Dependencies for Telegram Gift Monitor Bot
+# وابستگی‌های مورد نیاز برای ربات مانیتور گیفت تلگرام
+
+# کتابخانه اصلی تلگرام
+telethon>=1.28.5
+
+# کتابخانه‌های کمکی
+asyncio-mqtt>=0.11.0
+aiofiles>=23.1.0
+
+# کتابخانه‌های پردازش داده
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# کتابخانه‌های امنیتی
+cryptg>=0.4.0
+
+# کتابخانه‌های logging و monitoring
+colorlog>=6.7.0
+
+# کتابخانه‌های کمکی برای cPanel
+psutil>=5.9.0
