@@ -1,0 +1,12 @@
+{
+    "api_id": "YOUR_API_ID",
+    "api_hash": "YOUR_API_HASH",
+    "channels": [
+        "@your_channel_username",
+        "@another_channel"
+    ],
+    "check_interval": 30,
+    "device_model": "PC 64bit",
+    "system_version": "4.14.186",
+    "app_version": "1.28.5"
+}

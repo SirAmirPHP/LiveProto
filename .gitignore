@@ -1,0 +1,34 @@
+# فایل‌های کانفیگ
+gift_config.json
+*.env
+
+# فایل‌های داده
+data/
+*.db
+*.sqlite
+
+# فایل‌های موقت
+*.log
+*.tmp
+
+# فایل‌های IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# فایل‌های سیستم
+.DS_Store
+Thumbs.db
+
+# فایل‌های Composer
+vendor/
+composer.lock
+
+# فایل‌های PHP
+*.phar
+liveproto.php
+
+# فایل‌های لاگ
+logs/
+*.log

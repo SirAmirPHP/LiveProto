@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  telegram-gift-monitor:
+    build: .
+    container_name: telegram-gift-monitor
+    restart: unless-stopped
+    volumes:
+      - ./gift_config.json:/app/gift_config.json
+      - ./data:/app/data
+    environment:
+      - TZ=Asia/Tehran
+    networks:
+      - telegram-network
+
+networks:
+  telegram-network:
+    driver: bridge
