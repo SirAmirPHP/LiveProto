@@ -1,0 +1,32 @@
+# وابستگی‌ها
+vendor/
+composer.lock
+
+# فایل‌های تنظیمات حساس
+config.json
+
+# فایل‌های session
+session.madeline*
+*.session
+
+# لاگ‌ها
+logs/
+*.log
+
+# فایل‌های موقت
+*.tmp
+*.temp
+
+# فایل‌های IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# فایل‌های سیستم
+.DS_Store
+Thumbs.db
+
+# فایل‌های backup
+*.bak
+*.backup
