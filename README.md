@@ -1,108 +1,184 @@
-# LiveProto
+# ربات مانیتور گیفت تلگرام
+## Telegram Gift Monitor Bot
 
-<p>
-  <img src = "docs/_images/logo.svg" alt = "logo" style = "vertical-align : middle; width : 24px; height : 24px;"/>
-  An <strong>async</strong> , <strong>Pure-PHP</strong> MTProto Telegram client library for both <em>bot</em> & <em>user account</em> handling
-</p>
+ربات هوشمند برای استخراج و ارسال خودکار اطلاعات گیفت‌های تلگرام به کانال تعیین شده.
 
----
+### ویژگی‌ها ✨
 
-## 🚀 Features
+- 🔍 **تشخیص خودکار گیفت**: شناسایی خودکار پیام‌های حاوی گیفت در کانال‌های مختلف
+- 📢 **ارسال فوری**: ارسال سریع اطلاعات گیفت به کانال هدف
+- 🎯 **پشتیبانی از چندین کانال**: مانیتور همزمان چندین کانال گیفت
+- 📱 **پشتیبانی از رسانه**: ارسال تصاویر، استیکرها و فایل‌های گیفت
+- 🛡️ **امنیت بالا**: استفاده از API رسمی تلگرام
+- 📊 **لاگ کامل**: ثبت تمام فعالیت‌ها و خطاها
+- 🔄 **جلوگیری از تکرار**: عدم ارسال مجدد گیفت‌های قبلی
 
-* **Full MTProto Protocol** : Complete implementation of Telegram's low-level protocol
-* **Asynchronous I/O** : Built with PHP 8's async primitives ( Fibers / Amp ), enabling non-blocking requests
-* **Session Management** : Automatic key exchange, session storage, and reconnection logic
-* **Comprehensive API Coverage** : Send and receive messages, manage chats and channels, handle updates, upload/download media, and more
+### نصب و راه‌اندازی 🚀
 
----
+#### 1. دریافت API اطلاعات
 
-## 📦 Installation
+1. به [my.telegram.org](https://my.telegram.org) بروید
+2. وارد حساب کاربری خود شوید
+3. در بخش "API development tools" کلیک کنید
+4. یک اپلیکیشن جدید ایجاد کنید
+5. `API ID` و `API Hash` را کپی کنید
 
-Install via Composer :
+#### 2. ایجاد ربات تلگرام
+
+1. به [@BotFather](https://t.me/BotFather) پیام دهید
+2. دستور `/newbot` را ارسال کنید
+3. نام و نام کاربری ربات را وارد کنید
+4. توکن ربات را کپی کنید
+
+#### 3. نصب وابستگی‌ها
 
 ```bash
-composer require taknone/liveproto
+# نصب Python packages
+pip install -r requirements.txt
+
+# یا برای Python 3
+pip3 install -r requirements.txt
 ```
 
-Then use it like this :
+#### 4. تنظیمات
 
-```php
-<?php
+1. فایل `.env` را ایجاد کنید:
 
-require 'vendor/autoload.php';
+```bash
+python config.py
 ```
 
-Install via Phar :
+2. اطلاعات خود را در فایل `.env` وارد کنید:
 
-```php
-<?php
-
-if(file_exists('liveproto.php') === false):
-    copy('https://installer.liveproto.dev/liveproto.php','liveproto.php');
-endif;
-
-require_once 'liveproto.php';
+```env
+API_ID=your_api_id_here
+API_HASH=your_api_hash_here
+BOT_TOKEN=your_bot_token_here
+GIFT_CHANNELS=@gift_channel_1,@gift_channel_2
+TARGET_CHANNEL=@your_target_channel
 ```
+
+#### 5. اجرای ربات
+
+```bash
+# اجرای مستقیم
+python bot.py
+
+# یا با اسکریپت اجرا
+chmod +x run.sh
+./run.sh
+```
+
+### تنظیمات پیشرفته ⚙️
+
+#### متغیرهای محیطی
+
+| متغیر | توضیح | پیش‌فرض |
+|-------|-------|---------|
+| `API_ID` | شناسه API تلگرام | - |
+| `API_HASH` | کلید API تلگرام | - |
+| `BOT_TOKEN` | توکن ربات | - |
+| `GIFT_CHANNELS` | کانال‌های گیفت (با کاما جدا) | - |
+| `TARGET_CHANNEL` | کانال هدف | - |
+| `CHECK_INTERVAL` | فاصله بررسی (ثانیه) | 30 |
+| `MAX_RETRIES` | حداکثر تلاش مجدد | 3 |
+| `DEBUG` | حالت دیباگ | False |
+
+#### کانال‌های گیفت
+
+برای اضافه کردن کانال‌های جدید:
+
+1. ربات را به کانال اضافه کنید
+2. به ربات دسترسی ادمین بدهید
+3. نام کانال را به `GIFT_CHANNELS` اضافه کنید
+
+### اجرا در cPanel 🖥️
+
+#### 1. آپلود فایل‌ها
+
+1. تمام فایل‌ها را در پوشه `public_html` آپلود کنید
+2. فایل‌های `.env` و `.session` را در پوشه محافظت شده قرار دهید
+
+#### 2. تنظیم Cron Job
+
+1. در cPanel به بخش "Cron Jobs" بروید
+2. یک cron job جدید ایجاد کنید:
+
+```bash
+# هر 5 دقیقه اجرا شود
+*/5 * * * * cd /home/username/public_html && python3 bot.py
+
+# یا هر دقیقه
+* * * * * cd /home/username/public_html && python3 bot.py
+```
+
+#### 3. اجرای دائمی
+
+برای اجرای دائمی ربات:
+
+```bash
+# استفاده از nohup
+nohup python3 bot.py > bot.log 2>&1 &
+
+# یا استفاده از screen
+screen -S gift_bot
+python3 bot.py
+# Ctrl+A, D برای خارج شدن از screen
+```
+
+### ساختار فایل‌ها 📁
+
+```
+telegram-gift-monitor/
+├── bot.py              # فایل اصلی ربات
+├── config.py           # تنظیمات
+├── requirements.txt    # وابستگی‌ها
+├── run.sh             # اسکریپت اجرا
+├── README.md          # راهنما
+├── .env               # تنظیمات محیطی
+├── gift_monitor.log   # فایل لاگ
+└── processed_gifts.json # فایل پیام‌های پردازش شده
+```
+
+### عیب‌یابی 🔧
+
+#### مشکلات رایج
+
+1. **خطای API**: بررسی صحت `API_ID` و `API_HASH`
+2. **خطای توکن**: بررسی صحت `BOT_TOKEN`
+3. **عدم دسترسی به کانال**: ربات را به کانال اضافه کنید
+4. **خطای ارسال**: بررسی دسترسی ربات به کانال هدف
+
+#### بررسی لاگ‌ها
+
+```bash
+# مشاهده لاگ‌ها
+tail -f gift_monitor.log
+
+# جستجو در لاگ‌ها
+grep "ERROR" gift_monitor.log
+grep "Gift" gift_monitor.log
+```
+
+### امنیت 🔒
+
+- توکن ربات را در فایل `.env` نگه دارید
+- فایل `.env` را در `.gitignore` قرار دهید
+- دسترسی‌های ربات را محدود کنید
+- به طور منظم لاگ‌ها را بررسی کنید
+
+### پشتیبانی 💬
+
+برای پشتیبانی و گزارش باگ:
+
+1. لاگ‌های خطا را بررسی کنید
+2. تنظیمات را دوباره بررسی کنید
+3. در صورت نیاز، لاگ‌ها را ارسال کنید
+
+### مجوز 📄
+
+این پروژه تحت مجوز MIT منتشر شده است.
 
 ---
 
-## 🏁 Getting Started
-
-Example Usage :
-
-```php
-<?php
-
-if(file_exists('vendor/autoload.php')):
-    require 'vendor/autoload.php';
-elseif(file_exists('liveproto.phar')):
-    require_once 'liveproto.phar';
-elseif(file_exists('liveproto.php') === false):
-    copy('https://installer.liveproto.dev/liveproto.php','liveproto.php');
-    require_once 'liveproto.php';
-endif;
-
-use Tak\Liveproto\Network\Client;
-
-use Tak\Liveproto\Utils\Settings;
-
-$settings = new Settings();
-$settings->setApiId(21724);
-$settings->setApiHash('3e0cb5efcd52300aec5994fdfc5bdc16');
-$settings->setHideLog(false);
-
-$client = new Client('testSession','sqlite',$settings);
-
-$client->connect();
-
-try {
-	if($client->isAuthorized() === false){
-		$client->sign_in(bot_token : '123456:AAEK.....');
-	}
-	/* 😁 If you would like to avoid errors, enter your username in the line below 😎 */
-	$peer = $client->get_input_peer('@TakNone');
-	print_r($client->messages->sendMessage($peer,'👋',random_int(PHP_INT_MIN,PHP_INT_MAX)));
-} catch(Throwable $error){
-	var_dump($error);
-} finally {
-	$client->disconnect();
-}
-
-?>
-```
-
----
-
-## 💬 Community & Chat
-Join the project community :
-- Chat ( Telegram ) : https://t.me/LiveProtoChat
-- News ( Telegram channel ) : https://t.me/LiveProto
-- Snippets ( Telegram ) : https://t.me/LiveProtoSnippets
-
-## 🎓 Documentation
-
-Visit [Docs LiveProto](https://docs.LiveProto.dev) and [TL LiveProto](https://tl.LiveProto.dev)
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE)
+**نکته**: این ربات برای استفاده شخصی و غیرتجاری طراحی شده است. لطفاً قوانین تلگرام را رعایت کنید.
