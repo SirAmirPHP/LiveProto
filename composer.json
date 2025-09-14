@@ -1,53 +1,27 @@
 {
-    "name": "taknone/liveproto",
-    "license": "MIT",
-    "description": "An async , pure PHP MTProto Telegram client",
-    "type": "library",
-    "keywords": [
-        "telegram",
-        "client",
-        "api",
-        "php",
-        "liveproto",
-        "live",
-        "proto",
-        "telegram-client",
-        "mtproto",
-        "async"
-    ],
+    "name": "telegram-music-recognition-bot",
+    "description": "ربات تلگرام برای شناسایی آهنگ از ریلزهای اینستاگرام",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
+    },
     "autoload": {
         "psr-4": {
-            "Tak\\Liveproto\\": "src"
-        },
-        "files": [
-            "src/loader.php"
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php install.php"
         ]
     },
-    "authors": [
-        {
-            "name": "Tak None",
-            "email": "MrTakNone@gmail.com"
-        }
-    ],
-    "minimum-stability": "beta",
-    "require": {
-        "php-64bit": ">=8.2",
-        "ext-openssl": "*",
-        "ext-gmp": "*",
-        "ext-json": "*",
-        "ext-xml": "*",
-        "ext-dom": "*",
-        "ext-filter": "*",
-        "ext-hash": "*",
-        "ext-zlib": "*",
-        "ext-fileinfo": "*",
-        "amphp/amp": "^3.1.0",
-        "amphp/websocket-client": "^2.0.1",
-        "amphp/socket": "^2.3.1",
-        "amphp/file": "^3.2.0",
-        "amphp/mysql": "^3",
-        "phpseclib/phpseclib": "^3.0.46",
-        "taknone/attributes": "*",
-        "taknone/bootstrapper": "*"
-    }
+    "config": {
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

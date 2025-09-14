@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=music_bot_db
+      - DB_USER=music_bot_user
+      - DB_PASS=music_bot_password
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html
+      - ./logs:/var/log/apache2
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=music_bot_db
+      - MYSQL_USER=music_bot_user
+      - MYSQL_PASSWORD=music_bot_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:

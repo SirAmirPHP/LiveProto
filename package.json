@@ -1,0 +1,52 @@
+{
+  "name": "telegram-music-recognition-bot",
+  "version": "1.0.0",
+  "description": "ربات تلگرام برای شناسایی آهنگ از ریلزهای اینستاگرام",
+  "main": "webhook.php",
+  "scripts": {
+    "start": "php -S localhost:8000",
+    "test": "php test.php",
+    "setup": "php setup.php",
+    "install": "php install.php",
+    "cron": "php cron.php",
+    "backup": "php backup.php",
+    "monitor": "php monitor.php",
+    "security": "php security.php",
+    "logs": "php logs.php",
+    "admin": "php admin.php",
+    "version": "php version.php"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "music",
+    "recognition",
+    "instagram",
+    "reels",
+    "php",
+    "mysql",
+    "ffmpeg"
+  ],
+  "author": "Music Recognition Bot Team",
+  "license": "MIT",
+  "engines": {
+    "php": ">=7.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/telegram-music-recognition-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/telegram-music-recognition-bot/issues"
+  },
+  "homepage": "https://github.com/yourusername/telegram-music-recognition-bot#readme",
+  "dependencies": {
+    "php": ">=7.4.0"
+  },
+  "devDependencies": {},
+  "config": {
+    "php_version": "7.4.0",
+    "mysql_version": "5.7.0",
+    "ffmpeg_required": true
+  }
+}
