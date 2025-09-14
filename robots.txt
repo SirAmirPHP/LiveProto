@@ -1,0 +1,35 @@
+User-agent: *
+Disallow: /config.php
+Disallow: /database.php
+Disallow: /instagram_handler.php
+Disallow: /music_recognizer.php
+Disallow: /telegram_bot.php
+Disallow: /webhook.php
+Disallow: /setup.php
+Disallow: /test.php
+Disallow: /admin.php
+Disallow: /backup.php
+Disallow: /api.php
+Disallow: /cron.php
+Disallow: /version.php
+Disallow: /uninstall.php
+Disallow: /update.php
+Disallow: /security.php
+Disallow: /monitor.php
+Disallow: /logs.php
+Disallow: /install.php
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /backup/
+Disallow: /cache/
+
+# Allow main pages
+Allow: /index.php
+Allow: /README.md
+Allow: /LICENSE
+Allow: /CHANGELOG.md
+Allow: /CONTRIBUTING.md
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml

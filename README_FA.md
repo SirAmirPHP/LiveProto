@@ -33,14 +33,7 @@
 ### 3. تنظیم دیتابیس
 
 1. دیتابیس MySQL ایجاد کنید
-2. فایل `config.php` را ویرایش کنید و اطلاعات دیتابیس را وارد کنید:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'your_database_name');
-define('DB_USER', 'your_username');
-define('DB_PASS', 'your_password');
-```
+2. فایل `config.php` را ویرایش کنید و اطلاعات دیتابیس را وارد کنید
 
 ### 4. ایجاد ربات تلگرام
 
@@ -48,11 +41,7 @@ define('DB_PASS', 'your_password');
 2. دستور `/newbot` را ارسال کنید
 3. نام و username ربات را انتخاب کنید
 4. توکن ربات را کپی کنید
-5. توکن را در فایل `config.php` وارد کنید:
-
-```php
-define('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE');
-```
+5. توکن را در فایل `config.php` وارد کنید
 
 ### 5. تنظیم API ها
 

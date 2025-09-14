@@ -1,0 +1,54 @@
+# فایل‌های حساس
+config.php
+.env
+*.log
+
+# فایل‌های موقت
+temp/
+tmp/
+*.tmp
+
+# فایل‌های سیستم
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# فایل‌های IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# فایل‌های PHP
+vendor/
+composer.lock
+
+# فایل‌های لاگ
+logs/
+*.log
+
+# فایل‌های پشتیبان
+backup_*.sql
+*.bak
+
+# فایل‌های آپلود
+uploads/
+files/
+
+# فایل‌های cache
+cache/
+*.cache
+
+# فایل‌های موقت FFmpeg
+*.mp4
+*.wav
+*.avi
+*.mov
+
+# فایل‌های تست
+test_files/
+test_videos/
+
+# فایل‌های شخصی
+personal/
+private/

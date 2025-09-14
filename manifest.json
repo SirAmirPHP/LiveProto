@@ -1,0 +1,22 @@
+{
+    "name": "ربات شناسایی آهنگ تلگرام",
+    "short_name": "Music Bot",
+    "description": "ربات تلگرام برای شناسایی آهنگ از ریلزهای اینستاگرام",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "16x16 32x32 48x48",
+            "type": "image/x-icon"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#667eea",
+    "background_color": "#ffffff",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "fa",
+    "dir": "rtl"
+}

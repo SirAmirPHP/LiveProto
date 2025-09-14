@@ -1,75 +1,40 @@
-# تنظیمات Apache برای ربات تلگرام
-# Apache settings for Telegram bot
-
-# فعال کردن mod_rewrite
 RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
 
-# تنظیم نوع محتوا برای فایل‌های PHP
-AddType application/x-httpd-php .php
+# امنیت
+Options -Indexes
+ServerSignature Off
 
-# تنظیمات امنیتی
-# Security settings
+# محدودیت فایل
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value max_execution_time 300
+php_value memory_limit 256M
 
-# جلوگیری از دسترسی مستقیم به فایل‌های حساس
+# محافظت از فایل‌های حساس
 <Files "config.php">
     Order Allow,Deny
     Deny from all
 </Files>
 
-<Files "database.json">
+<Files "database.php">
     Order Allow,Deny
     Deny from all
 </Files>
 
-<Files "channels.txt">
+<Files "instagram_handler.php">
     Order Allow,Deny
     Deny from all
 </Files>
 
-<Files "bot.log">
+<Files "music_recognizer.php">
     Order Allow,Deny
     Deny from all
 </Files>
 
-# تنظیمات PHP
-# PHP settings
-php_value max_execution_time 30
-php_value memory_limit 128M
-php_value post_max_size 8M
-php_value upload_max_filesize 8M
-
-# تنظیمات امنیتی اضافی
-# Additional security settings
-ServerSignature Off
-Options -Indexes
-
-# تنظیمات کش
-# Cache settings
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType text/html "access plus 0 seconds"
-    ExpiresByType application/json "access plus 0 seconds"
-</IfModule>
-
-# تنظیمات فشرده‌سازی
-# Compression settings
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-    AddOutputFilterByType DEFLATE application/json
-</IfModule>
-
-# تنظیمات CORS (در صورت نیاز)
-# CORS settings (if needed)
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
-</IfModule>
+<Files "telegram_bot.php">
+    Order Allow,Deny
+    Deny from all
+</Files>

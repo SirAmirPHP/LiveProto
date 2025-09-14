@@ -1,0 +1,22 @@
+# پیش‌نیازهای سیستم
+PHP >= 7.4
+MySQL >= 5.7
+FFmpeg (برای استخراج صدا از ویدیو)
+
+# Extension های PHP مورد نیاز
+php-curl
+php-json
+php-pdo
+php-pdo_mysql
+
+# کتابخانه‌های اضافی (اختیاری)
+php-gd
+php-mbstring
+php-xml
+php-zip
+
+# تنظیمات PHP
+upload_max_filesize = 50M
+post_max_size = 50M
+max_execution_time = 300
+memory_limit = 256M
