@@ -1,108 +1,112 @@
-# LiveProto
+# ربات مدیریت کانال تلگرام
+## Telegram Channel Manager Bot
 
-<p>
-  <img src = "docs/_images/logo.svg" alt = "logo" style = "vertical-align : middle; width : 24px; height : 24px;"/>
-  An <strong>async</strong> , <strong>Pure-PHP</strong> MTProto Telegram client library for both <em>bot</em> & <em>user account</em> handling
-</p>
+این ربات به شما امکان مدیریت کانال‌های تلگرام را می‌دهد و قابل اجرا در هاست cPanel است.
+
+### ویژگی‌ها (Features)
+
+- ✅ افزودن ربات به کانال با تأیید مالکیت
+- ✅ مدیریت کانال‌ها با دکمه‌های شیشه‌ای
+- ✅ تنظیم کپشن مخصوص هر کانال
+- ✅ حذف کانال از لیست
+- ✅ ذخیره‌سازی اطلاعات در فایل JSON
+- ✅ ذخیره لیست کانال‌ها در فایل TXT
+- ✅ پشتیبانی از وب‌هوک
+
+### نصب و راه‌اندازی (Installation)
+
+#### 1. ایجاد ربات در تلگرام
+1. به [@BotFather](https://t.me/BotFather) پیام دهید
+2. دستور `/newbot` را ارسال کنید
+3. نام و نام کاربری ربات را انتخاب کنید
+4. توکن ربات را کپی کنید
+
+#### 2. آپلود فایل‌ها
+1. فایل‌های زیر را در هاست cPanel آپلود کنید:
+   - `bot.php` (فایل اصلی ربات)
+   - `config.php` (فایل تنظیمات)
+
+#### 3. تنظیمات
+1. فایل `config.php` را ویرایش کنید:
+   ```php
+   define('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE');
+   define('WEBHOOK_URL', 'https://yourdomain.com/bot.php');
+   ```
+
+#### 4. تنظیم وب‌هوک
+1. در مرورگر به آدرس زیر بروید:
+   ```
+   https://yourdomain.com/bot.php?set_webhook=1
+   ```
+2. پیام "Webhook set" را مشاهده کنید
+
+### نحوه استفاده (Usage)
+
+#### افزودن ربات به کانال
+1. ربات را استارت کنید: `/start`
+2. روی "افزودن ربات به کانال" کلیک کنید
+3. ربات را به کانال خود اضافه کنید
+4. ربات را به عنوان ادمین کانال تنظیم کنید
+5. فقط مالک کانال می‌تواند ربات را اضافه کند
+
+#### مدیریت کانال‌ها
+1. روی "مدیریت کانال" کلیک کنید
+2. کانال مورد نظر را از لیست انتخاب کنید
+3. گزینه‌های زیر در دسترس است:
+   - تنظیم کپشن
+   - حذف کانال
+
+### ساختار فایل‌ها (File Structure)
+
+```
+/
+├── bot.php          # فایل اصلی ربات
+├── config.php       # فایل تنظیمات
+├── database.json    # دیتابیس کانال‌ها و کپشن‌ها (خودکار ایجاد می‌شود)
+├── channels.txt     # لیست شناسه‌های کانال‌ها (خودکار ایجاد می‌شود)
+└── bot.log          # فایل لاگ (در صورت فعال بودن)
+```
+
+### تنظیمات پیشرفته (Advanced Settings)
+
+در فایل `config.php` می‌توانید تنظیمات زیر را تغییر دهید:
+
+- `MAX_CHANNELS_PER_USER`: حداکثر تعداد کانال برای هر کاربر
+- `ALLOWED_IPS`: لیست IP های مجاز
+- `ENABLE_LOGGING`: فعال/غیرفعال کردن لاگ
+- `TIMEZONE`: منطقه زمانی
+
+### امنیت (Security)
+
+- ربات فقط توسط مالک کانال قابل اضافه کردن است
+- هر کاربر فقط کانال‌های خود را می‌تواند مدیریت کند
+- امکان محدود کردن دسترسی بر اساس IP
+- لاگ تمام فعالیت‌ها
+
+### عیب‌یابی (Troubleshooting)
+
+#### ربات پاسخ نمی‌دهد
+1. بررسی کنید که توکن ربات صحیح باشد
+2. وب‌هوک به درستی تنظیم شده باشد
+3. فایل‌ها در مسیر صحیح آپلود شده باشند
+
+#### خطای دسترسی
+1. مجوزهای فایل‌ها را بررسی کنید (755 برای پوشه‌ها، 644 برای فایل‌ها)
+2. بررسی کنید که PHP فعال باشد
+
+#### کانال اضافه نمی‌شود
+1. اطمینان حاصل کنید که مالک کانال هستید
+2. ربات را به عنوان ادمین کانال تنظیم کنید
+3. ربات دسترسی کامل به کانال داشته باشد
+
+### پشتیبانی (Support)
+
+برای پشتیبانی و گزارش باگ، لطفاً با توسعه‌دهنده تماس بگیرید.
+
+### مجوز (License)
+
+این پروژه تحت مجوز MIT منتشر شده است.
 
 ---
 
-## 🚀 Features
-
-* **Full MTProto Protocol** : Complete implementation of Telegram's low-level protocol
-* **Asynchronous I/O** : Built with PHP 8's async primitives ( Fibers / Amp ), enabling non-blocking requests
-* **Session Management** : Automatic key exchange, session storage, and reconnection logic
-* **Comprehensive API Coverage** : Send and receive messages, manage chats and channels, handle updates, upload/download media, and more
-
----
-
-## 📦 Installation
-
-Install via Composer :
-
-```bash
-composer require taknone/liveproto
-```
-
-Then use it like this :
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-```
-
-Install via Phar :
-
-```php
-<?php
-
-if(file_exists('liveproto.php') === false):
-    copy('https://installer.liveproto.dev/liveproto.php','liveproto.php');
-endif;
-
-require_once 'liveproto.php';
-```
-
----
-
-## 🏁 Getting Started
-
-Example Usage :
-
-```php
-<?php
-
-if(file_exists('vendor/autoload.php')):
-    require 'vendor/autoload.php';
-elseif(file_exists('liveproto.phar')):
-    require_once 'liveproto.phar';
-elseif(file_exists('liveproto.php') === false):
-    copy('https://installer.liveproto.dev/liveproto.php','liveproto.php');
-    require_once 'liveproto.php';
-endif;
-
-use Tak\Liveproto\Network\Client;
-
-use Tak\Liveproto\Utils\Settings;
-
-$settings = new Settings();
-$settings->setApiId(21724);
-$settings->setApiHash('3e0cb5efcd52300aec5994fdfc5bdc16');
-$settings->setHideLog(false);
-
-$client = new Client('testSession','sqlite',$settings);
-
-$client->connect();
-
-try {
-	if($client->isAuthorized() === false){
-		$client->sign_in(bot_token : '123456:AAEK.....');
-	}
-	/* 😁 If you would like to avoid errors, enter your username in the line below 😎 */
-	$peer = $client->get_input_peer('@TakNone');
-	print_r($client->messages->sendMessage($peer,'👋',random_int(PHP_INT_MIN,PHP_INT_MAX)));
-} catch(Throwable $error){
-	var_dump($error);
-} finally {
-	$client->disconnect();
-}
-
-?>
-```
-
----
-
-## 💬 Community & Chat
-Join the project community :
-- Chat ( Telegram ) : https://t.me/LiveProtoChat
-- News ( Telegram channel ) : https://t.me/LiveProto
-- Snippets ( Telegram ) : https://t.me/LiveProtoSnippets
-
-## 🎓 Documentation
-
-Visit [Docs LiveProto](https://docs.LiveProto.dev) and [TL LiveProto](https://tl.LiveProto.dev)
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE)
+**نکته مهم**: قبل از استفاده در محیط تولید، حتماً تنظیمات امنیتی را بررسی کنید.
