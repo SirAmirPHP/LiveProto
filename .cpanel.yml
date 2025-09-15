@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html
+    - /bin/cp -R public/* $DEPLOYPATH/
+    - /bin/mkdir -p /home/$USER/bot/src /home/$USER/bot/storage/logs /home/$USER/bot/tools
+    - /bin/cp -R src/* /home/$USER/bot/src/
+    - /bin/cp -R tools/* /home/$USER/bot/tools/
+

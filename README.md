@@ -1,3 +1,34 @@
+## Telegram Reels Music Recognizer (PHP, cPanel)
+
+This PHP bot receives an Instagram Reels link and replies with the song name using AudD music recognition.
+
+### Files
+- `public/index.php`: Telegram webhook entrypoint
+- `src/config.php`: Put your tokens here
+- `src/bootstrap.php`: Core bot logic
+- `tools/set_webhook.php`: Helper to set Telegram webhook
+
+### Requirements
+- PHP 7.4+ with cURL enabled (cPanel default is fine)
+- A public HTTPS URL (use your cPanel domain)
+- Telegram Bot Token (from @BotFather)
+- AudD API token (`https://audd.io`)
+
+### Setup
+1. Edit `src/config.php` and set:
+   - `TELEGRAM_BOT_TOKEN`
+   - `AUDD_API_TOKEN`
+2. Upload the project to your hosting so that `public/index.php` is accessible at `https://your-domain.tld/index.php` (or map DocumentRoot to `public/`).
+3. Set the webhook:
+   - From your computer: `php tools/set_webhook.php https://your-domain.tld/index.php`
+   - Or via browser: `https://api.telegram.org/bot<YOUR_TOKEN>/setWebhook?url=https://your-domain.tld/index.php`
+4. Send `/start` to your bot, then send an Instagram Reels URL.
+
+### Notes
+- The bot extracts the first Instagram Reels-like URL from the message.
+- If AudD cannot fetch/recognize the audio, it will respond with an error message.
+- Logs (if enabled) go to `storage/logs/app.log` (create directory with write permissions if needed).
+
 # ربات مدیریت کانال تلگرام
 ## Telegram Channel Manager Bot
 
