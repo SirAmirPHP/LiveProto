@@ -1,11 +1,27 @@
 <?php
-// Telegram Bot Configuration
-define('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE');
-define('WEBHOOK_URL', 'https://yourdomain.com/bot.php');
+// Load external configuration first (safe fallbacks below)
+if (file_exists(__DIR__ . '/config.php')) {
+    require_once __DIR__ . '/config.php';
+}
+
+// Telegram Bot Configuration (define only if not provided in config.php)
+if (!defined('BOT_TOKEN')) {
+    define('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE');
+}
+if (!defined('WEBHOOK_URL')) {
+    define('WEBHOOK_URL', 'https://yourdomain.com/bot.php');
+}
 
 // Database files
-define('CHANNELS_FILE', 'channels.txt');
-define('DATABASE_FILE', 'database.json');
+if (!defined('CHANNELS_FILE')) {
+    define('CHANNELS_FILE', 'channels.txt');
+}
+if (!defined('DATABASE_FILE')) {
+    define('DATABASE_FILE', 'database.json');
+}
+
+// Include Instagram Reel detector helper
+require_once __DIR__ . '/reel_detector.php';
 
 // Initialize database if not exists
 if (!file_exists(DATABASE_FILE)) {
@@ -39,6 +55,26 @@ function processUpdate($update) {
         $user_id = $message['from']['id'];
         $text = $message['text'] ?? '';
         
+        // If message contains an Instagram Reel URL, try to detect music first
+        if ($text && ($reelUrl = findInstagramReelUrl($text))) {
+            $detection = detectReelMusicTitle($reelUrl);
+            if ($detection['ok']) {
+                $artist = $detection['artist'] ?? '';
+                $track = $detection['track'] ?? '';
+                if ($track !== '') {
+                    $reply = $artist !== ''
+                        ? ("نام آهنگ: " . $track . "\nخواننده/سازنده: " . $artist)
+                        : ("نام آهنگ: " . $track);
+                    sendMessage($chat_id, $reply);
+                } else {
+                    sendMessage($chat_id, "نتوانستم نام آهنگ این ریلز را پیدا کنم. لطفا مطمئن شوید ریلز عمومی است و دوباره تلاش کنید.");
+                }
+            } else {
+                sendMessage($chat_id, $detection['message']);
+            }
+            return;
+        }
+
         if ($text === '/start') {
             showMainMenu($chat_id);
         } elseif ($text === 'افزودن ربات به کانال') {
@@ -51,6 +87,14 @@ function processUpdate($update) {
     } elseif (isset($update['callback_query'])) {
         handleCallbackQuery($update['callback_query']);
     }
+}
+
+function findInstagramReelUrl(string $text): ?string {
+    $regex = '~https?://(?:www\.)?instagram\.com/(?:reel|reels)/[A-Za-z0-9_\-]+/?~i';
+    if (preg_match($regex, $text, $m)) {
+        return $m[0];
+    }
+    return null;
 }
 
 function showMainMenu($chat_id) {

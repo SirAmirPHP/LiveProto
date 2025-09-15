@@ -17,6 +17,17 @@ define('WEBHOOK_URL', 'https://yourdomain.com/bot.php');
 define('CHANNELS_FILE', 'channels.txt');
 define('DATABASE_FILE', 'database.json');
 
+// Instagram oEmbed / Meta App credentials (optional but recommended for reliability)
+if (!defined('FB_APP_ID')) define('FB_APP_ID', '');
+if (!defined('FB_APP_SECRET')) define('FB_APP_SECRET', '');
+// Override oEmbed endpoint if needed
+if (!defined('INSTAGRAM_OEMBED_ENDPOINT')) define('INSTAGRAM_OEMBED_ENDPOINT', 'https://graph.facebook.com/v19.0/instagram_oembed');
+
+// ACRCloud credentials (optional, for advanced recognition if you add audio extraction)
+if (!defined('ACRCLOUD_HOST')) define('ACRCLOUD_HOST', '');
+if (!defined('ACRCLOUD_ACCESS_KEY')) define('ACRCLOUD_ACCESS_KEY', '');
+if (!defined('ACRCLOUD_ACCESS_SECRET')) define('ACRCLOUD_ACCESS_SECRET', '');
+
 // تنظیمات اضافی
 // Additional settings
 define('BOT_NAME', 'Channel Manager Bot');
